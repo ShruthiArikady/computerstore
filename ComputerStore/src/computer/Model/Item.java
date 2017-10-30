@@ -2,7 +2,7 @@ package computer.Model;
  
 public class Item {
 	private String name;
-	private int cost;
+	private String cost;
 	private String description;
 	private String brand;
 	private Type type;
@@ -14,7 +14,7 @@ public class Item {
 		this.type=type;
 	}
 	
-	public Item(String name,int cost,String description, String brand)
+	public Item(String name,String cost,String description, String brand)
 	{
 		this.name= name;
 		this.cost =cost;
@@ -35,7 +35,7 @@ public class Item {
 		return name;
 	}
 
-	public int getCost() {
+	public String getCost() {
 		return cost;
 	}
 

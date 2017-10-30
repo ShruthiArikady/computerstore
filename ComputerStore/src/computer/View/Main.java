@@ -1,9 +1,7 @@
 package computer.View;
 
 import computer.Controller.SelectComputer;
-import computer.Model.JSONWriter;
-import computer.Model.Item;
-import computer.Model.JSONReader;
+
 
 public class Main {
 
@@ -40,8 +38,4 @@ public class Main {
 
 	}
 	
-	public void printWelcome()
-	{
-	}
-
 }

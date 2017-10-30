@@ -1,7 +1,7 @@
 package computer.Controller;
 
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,6 +17,7 @@ public class SelectComputer {
 	public SelectComputer() {
 
 		// Iterate over item array
+		//Iterate over item array
 
 		JSONReader readData = new JSONReader();
 
@@ -34,27 +35,36 @@ public class SelectComputer {
 	}
 
 	public void selectType(String Type) {
-
+        boolean flag=false;
+       
 		for (Object itemObject : items) {
 
 			JSONObject item = (JSONObject) itemObject;
-
+			 while(!flag)
+		        {
 			if (item.get("type").equals(Type.toUpperCase().trim()))
-
-				System.out.println(item.get("brand").toString());
-		}
-
+		      System.out.println(item.get("brand").toString());
+			flag=true;
+			}
+			 if(flag)
+			System.out.println("enter valid Type");
+        }
 	}
 
 	public void selectModel(String Brand) {
-
+		boolean flag=false;
 		for (Object itemObject : items) {
 
 			JSONObject item = (JSONObject) itemObject;
-
+			 while(!flag)
+		        {
 			if (item.get("brand").equals(Brand))
 
 				System.out.println(item.get("name").toString());
+			    flag=true;
+				}
+			 if(flag)
+					System.out.println("enter valid Brand");
 		}
 
 	}
@@ -68,7 +78,7 @@ public class SelectComputer {
 
 				System.out.println("The Selected Item Name is :"+ item.get("name").toString());
 			System.out.println("The Selected Item Cost is :"+item.get("cost").toString());
-			System.out.println("The Selected Item Descrition is :"+item.get("description").toString());
+			System.out.println("The Selected Item Description is :"+item.get("description").toString());
 		}
 
 	}

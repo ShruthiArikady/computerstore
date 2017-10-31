@@ -17,7 +17,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Item i=new Item("HP","35000", "laptop is good","destop");
+		Item i=new Item("HP","35000", "laptop is good","destop",1);
 		//printWelcome();
 		Scanner scanner = new Scanner(System.in);
 	    System.out.println("Welcome to computerstore Application!");

@@ -5,6 +5,7 @@ public class Item {
 	private String cost;
 	private String description;
 	private String brand;
+	private int quantity;
 	private Type type;
 	public static enum Type{
 		DESKTOP,LAPTOP
@@ -14,13 +15,15 @@ public class Item {
 		this.type=type;
 	}
 	
-	public Item(String name,String cost,String description, String brand)
+	public Item(String name,String cost,String description, String brand,int quantity)
 	{
 		this.name= name;
 		this.cost =cost;
 		this.description =description;
 		this.brand =brand;
+		this.quantity=quantity;
 	}
+
 
 	public Type getType()
 	{
@@ -46,6 +49,12 @@ public class Item {
 	public String getBrand() {
 		return brand;
 	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	
 	
 
 

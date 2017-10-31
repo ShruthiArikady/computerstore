@@ -34,40 +34,43 @@ public class SelectComputer {
 
 	}
 
-	public void selectType(String Type) {
-        boolean flag=false;
-       
+	public boolean selectType(String Type) {
+		boolean value=true;
 		for (Object itemObject : items) {
 
 			JSONObject item = (JSONObject) itemObject;
-			 while(!flag)
-		        {
+			while(value)
+			{
 			if (item.get("type").equals(Type.toUpperCase().trim()))
+			{
 		      System.out.println(item.get("brand").toString());
-			flag=true;
-			}
-			 if(flag)
-			System.out.println("enter valid Type");
+        }else {
+        	System.out.println("you have entered invalid type");
+        	value=false;
         }
-	}
+	  }
+    }
+		return value;
+}
 
-	public void selectModel(String Brand) {
-		boolean flag=false;
+	public boolean selectModel(String Brand) {
+		boolean value=true;
 		for (Object itemObject : items) {
 
 			JSONObject item = (JSONObject) itemObject;
-			 while(!flag)
-		        {
+			while(value)
+			{
 			if (item.get("brand").equals(Brand))
-
+			{
 				System.out.println(item.get("name").toString());
-			    flag=true;
-				}
-			 if(flag)
-					System.out.println("enter valid Brand");
+			}else {
+	        	System.out.println("you have entered invalid Brand");
+	        	value=false;
+	        }
 		}
-
-	}
+		}
+		return value;
+      }
 
 	public void getDetails(String modelName) {
 		for (Object itemObject : items) {
@@ -82,4 +85,5 @@ public class SelectComputer {
 		}
 
 	}
+
 }

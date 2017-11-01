@@ -5,13 +5,13 @@ import java.util.ArrayList;
 public class Cart {
 	private int itemCount;
 	private double totalPrice;
-	private static int capacity;
+	private  int capacity;
 	private ArrayList<Item> cart;
 	
 	public Cart(){
-		itemCount=10;
+		itemCount=0;
 	    totalPrice=0.0;
-	    capacity=0;
+	    capacity=5;
 	}
 
 	public int getItemCount() {
@@ -22,7 +22,7 @@ public class Cart {
 		return totalPrice;
 	}
 
-	public static int getCapacity() {
+	public int getCapacity() {
 		return capacity;
 	}
 

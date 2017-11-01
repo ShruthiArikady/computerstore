@@ -8,7 +8,7 @@ import computer.Model.Cart;
 public class Purchase {
 
 	
-	 public void addToCart( String name, String cost, String Description,String brand,int quantity)
+	 public void addToCart( String name, double cost,int quantity)
 	    { 
 		 Item item = new Item();
 		 /*totalPrice += (itemPrice * itemQuantity);
@@ -28,4 +28,22 @@ public class Purchase {
 	    	 totalPrice += (double) i.getCost();
 	     }
        }
+	 
+	 @SuppressWarnings("null")
+	public void removeItem(String name)
+		{
+			Item  item = null;
+			Cart c=new Cart();
+			 ArrayList<Item> it= c.getCart();
+			for (Item j : it)
+			{
+				if(item.getName().equals(name)){
+					item = j;
+					break;
+				}
+			}
+			if(item != null){
+				it.remove(item);
+			}
+		}
 }

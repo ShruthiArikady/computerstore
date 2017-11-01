@@ -2,12 +2,15 @@ package computer.View;
 
 import java.util.Scanner;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import computer.Controller.Purchase;
 
+//import org.json.simple.JSONArray;
+//import org.json.simple.JSONObject;
+
+//import computer.Controller.Purchase;
 import computer.Controller.SelectComputer;
 import computer.Model.Item;
-import computer.Model.JSONReader;
+//import computer.Model.JSONReader;
 
 public class Main {
 
@@ -62,6 +65,35 @@ public class Main {
 				System.out.println("invalid type");
 			}
 		}
+		Scanner scan = new Scanner(System.in);
+          String keepShopping = "y";
+	      Purchase purchase = new Purchase();
+	      do
+	          {
+	    	  System.out.println("add to cart");
+	            System.out.print ("Enter the name of the item: ");
+	            String name = scan.next();
+
+	            System.out.print ("Enter the unit price: ");
+	            double itemPrice = scan.nextDouble();
+
+	            System.out.print ("Enter the quantity: ");
+	            int quantity = scan.nextInt();
+
+	            // *** create a new item and add it to the cart
+	            purchase.addToCart(name,itemPrice,quantity);
+
+
+
+	            // *** print the contents of the cart object using println
+	            System.out.println(purchase);
+
+	            System.out.print ("Continue shopping (y/n)? ");
+	            keepShopping = scan.next();
+	          }
+	      while (keepShopping.equals("y"));
+
+	    }
 		// s.selectType("Desktop");
 
 		// s.selectModel("HP");
@@ -72,5 +104,3 @@ public class Main {
 	 * JSONReader readObj = new JSONReader(); readObj.reader(); JSONWriter
 	 * jsonObj = new JSONWriter(); jsonObj.jsonwrite();
 	 */
-
-}

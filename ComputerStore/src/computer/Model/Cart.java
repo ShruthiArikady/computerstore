@@ -1,15 +1,17 @@
 package computer.Model;
 
-public class Cart {
-	public int itemCount;
-	public static double totalPrice;
-	public static int capacity;
-	public static Item[] cart = new Item[capacity];
+import java.util.ArrayList;
 
+public class Cart {
+	private int itemCount;
+	private double totalPrice;
+	private static int capacity;
+	private ArrayList<Item> cart;
+	
 	public Cart(){
 		itemCount=10;
 	    totalPrice=0.0;
-	    capacity = 0;
+	    capacity=0;
 	}
 
 	public int getItemCount() {
@@ -20,13 +22,19 @@ public class Cart {
 		return totalPrice;
 	}
 
-	public static Item[] getCart() {
+	public static int getCapacity() {
+		return capacity;
+	}
+
+	public ArrayList<Item> getCart() {
 		return cart;
 	}
 
-	public static void setCart(Item[] cart) {
-		Cart.cart = cart;
+	public void setCart(Item item) {
+		cart.add(item);
 	}
+
+	
 
 
 	

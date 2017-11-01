@@ -2,26 +2,28 @@ package computer.Model;
  
 public class Item {
 	private String name;
-	private String cost;
+	private double cost;
 	private String description;
 	private String brand;
 	private int quantity;
 	private Type type;
+	
 	public static enum Type{
 		DESKTOP,LAPTOP
 	}
+	
 	public Item(Type type)
 	{
 		this.type=type;
 	}
 	
-	public Item(String name,String cost,String description, String brand,int quantity)
+	public Item()
 	{
-		this.name= name;
+		/*this.name= name;
 		this.cost =cost;
 		this.description =description;
 		this.brand =brand;
-		this.quantity=quantity;
+		this.quantity=quantity;*/
 	}
 
 
@@ -38,7 +40,7 @@ public class Item {
 		return name;
 	}
 
-	public String getCost() {
+	public double getCost() {
 		return cost;
 	}
 

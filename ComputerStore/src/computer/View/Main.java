@@ -2,6 +2,8 @@ package computer.View;
 
 import java.util.Scanner;
 
+import org.json.simple.JSONObject;
+
 import computer.Controller.Purchase;
 
 //import org.json.simple.JSONArray;
@@ -25,6 +27,7 @@ public class Main {
 		System.out.println("Welcome to computerstore Application!");
 		boolean valid = false;
 		SelectComputer selectObj = new SelectComputer();
+		 Purchase purchase = new Purchase();
 		while (!valid) {
 			System.out.println("SELECT TYPE OF COMPUTER YOU WANT TO ORDER");
 			selectObj.printTypes();
@@ -64,35 +67,13 @@ public class Main {
 			} else {
 				System.out.println("invalid type");
 			}
+			System.out.print ("Enter the quantity: ");
+            int quantity = scanner.nextInt();
+            JSONObject item = selectObj.getItem();
+            purchase.addToCart(item,quantity);
+            System.out.println(purchase);
 		}
-		Scanner scan = new Scanner(System.in);
-          String keepShopping = "y";
-	      Purchase purchase = new Purchase();
-	      do
-	          {
-	    	  System.out.println("add to cart");
-	            System.out.print ("Enter the name of the item: ");
-	            String name = scan.next();
-
-	            System.out.print ("Enter the unit price: ");
-	            double itemPrice = scan.nextDouble();
-
-	            System.out.print ("Enter the quantity: ");
-	            int quantity = scan.nextInt();
-
-	            // *** create a new item and add it to the cart
-	            purchase.addToCart(name,itemPrice,quantity);
-
-
-
-	            // *** print the contents of the cart object using println
-	            System.out.println(purchase);
-
-	            System.out.print ("Continue shopping (y/n)? ");
-	            keepShopping = scan.next();
-	          }
-	      while (keepShopping.equals("y"));
-
+	     
 	    }
 		// s.selectType("Desktop");
 

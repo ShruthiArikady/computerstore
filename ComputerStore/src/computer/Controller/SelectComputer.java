@@ -13,6 +13,7 @@ import computer.Model.JSONReader;
 public class SelectComputer {
 
 	private JSONArray items;
+	private JSONObject item1;
 
 	public SelectComputer() {
 
@@ -77,6 +78,11 @@ public class SelectComputer {
 					+ item.get("description").toString());
 		}
 
+	}
+
+	public JSONObject getItem() {
+	
+		return item1;
 	}
 
 }

@@ -2,48 +2,41 @@ package computer.Controller;
 
 import java.util.ArrayList;
 
+import org.json.simple.JSONObject;
+
 import computer.Model.Item;
 import computer.Model.Cart;
 
 public class Purchase {
+	private Cart c;
 
+	public Purchase() {
+		c = new Cart();
+	}
 	
-	 public void addToCart( String name, double cost,int quantity)
+	 public void addToCart(JSONObject item,int quantity)
 	    { 
-		 Item item = new Item();
-		 /*totalPrice += (itemPrice * itemQuantity);
-		    cart[itemCount] = item;
-		    itemCount += 1;
-		    if(itemCount==capacity)
-		    {
-		        increaseSize();
-		    }
-	    }*/
-	     Cart c=new Cart();
-	     c.setCart(item);
-	     double totalPrice =c.getTotalPrice();
-	     ArrayList<Item> it= c.getCart();
-	     for(Item i:it)
-	     {
-	    	 totalPrice += (double) i.getCost();
+		 c.setCart(item);
+			double totalPrice = c.getTotalPrice();
+			ArrayList<JSONObject> it = c.getCart();
+			for (JSONObject i : it) {
+				totalPrice += Double.parseDouble(i.get("cost").toString());
+	
 	     }
-       }
+			c.setTotalPrice(totalPrice);
+	    }
 	 
-	 @SuppressWarnings("null")
-	public void removeItem(String name)
-		{
-			Item  item = null;
-			Cart c=new Cart();
-			 ArrayList<Item> it= c.getCart();
-			for (Item j : it)
-			{
-				if(item.getName().equals(name)){
-					item = j;
+	 public void removeItem(String name) {
+
+			ArrayList<JSONObject> it = c.getCart();
+			// ArrayList<JSONObject> newlist = new ArrayList<>();
+
+			for (JSONObject j : it) {
+	if (j.get("name").toString().toUpperCase().trim().equals(name.toUpperCase().trim())) {
+					// item = j;
+					// newlist.add(j);
 					break;
 				}
 			}
-			if(item != null){
-				it.remove(item);
-			}
-		}
+	 }
 }

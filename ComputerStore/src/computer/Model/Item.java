@@ -1,14 +1,25 @@
+// ***************************************************************
+
+//   Item.java
+//   Represents an item in a shopping cart.
+
+// ***************************************************************
+
+
+
 package computer.Model;
  
-public class Item {
+public class Item 
+{
 	private String name;
-	private double cost;
+	private int cost;
 	private String description;
 	private String brand;
 	private int quantity;
 	private Type type;
 	
-	public static enum Type{
+	public static enum Type
+	{
 		DESKTOP,LAPTOP
 	}
 	
@@ -35,32 +46,53 @@ public class Item {
 	public String toString() 
 	{ return  "" + type; }
 	
+
+// -------------------------------------------------
+//  Returns the names of the item
+//--------------------------------------------------
 	
-	public String getName() {
+	public String getName() 
+	{
 		return name;
 	}
+	
+	 
+// -------------------------------------------------
+//   Returns the cost of the item
+// -------------------------------------------------
 
-	public double getCost() {
+	public int getCost() 
+	{
 		return cost;
 	}
 
-	public String getDescription() {
+// -------------------------------------------------
+//  Returns the description of the item
+//--------------------------------------------------
+	
+	public String getDescription() 
+	{
 		return description;
 	}
 
-	public String getBrand() {
+// -------------------------------------------------
+//  Returns the brand of the item
+//--------------------------------------------------
+	public String getBrand() 
+	{
 		return brand;
 	}
 
-	public int getQuantity() {
+// -------------------------------------------------
+//  Returns the quantity of the item
+//--------------------------------------------------
+	
+	public int getQuantity() 
+	{
 		return quantity;
 	}
 
-	
-	
 
-
-
-	}
+}
 	
 	

@@ -13,7 +13,7 @@ import computer.Model.JSONReader;
 public class SelectComputer {
 
 	private JSONArray items;
-	private JSONObject item1;
+	private JSONObject selecteditem;
 
 	public SelectComputer() {
 
@@ -63,6 +63,7 @@ public class SelectComputer {
 		return value;
 	}
 
+	
 	public void getDetails(String modelName) {
 		for (Object itemObject : items) {
 
@@ -76,13 +77,17 @@ public class SelectComputer {
 					+ item.get("cost").toString());
 			System.out.println("The Selected Item Description is :"
 					+ item.get("description").toString());
+			System.out.println("No of pieces available:"
+					+ item.get("quantity"));
+					selecteditem=item;
 		}
 
 	}
 
+
 	public JSONObject getItem() {
 	
-		return item1;
+		return selecteditem;
 	}
 
 }

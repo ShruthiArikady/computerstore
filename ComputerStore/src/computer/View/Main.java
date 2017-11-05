@@ -14,7 +14,8 @@ import computer.Controller.SelectComputer;
 import computer.Model.Item;
 //import computer.Model.JSONReader;
 
-public class Main {
+public class Main 
+{
 
 	/**
 	 * @param args
@@ -28,21 +29,15 @@ public class Main {
 		boolean valid = false;
 		SelectComputer selectObj = new SelectComputer();
 		 Purchase purchase = new Purchase();
-		while (!valid) {
+		while(!valid) {
 			System.out.println("SELECT TYPE OF COMPUTER YOU WANT TO ORDER");
 			selectObj.printTypes();
 			String selection = scanner.nextLine();
 			if (selection.toUpperCase().trim().equals("DESKTOP")) {
-				// System.out.println("Please enter the brand:");
-				// String userType = scanner.nextLine();
-
-				// {
 				System.out.println("THE BRANDS AVAILABLE ARE:");
 				if (selectObj.selectBrand(selection)) {
 					System.out.println("Enter the brand name");
 					String brandname = scanner.nextLine();
-
-					
 					System.out.println("THE MODELS AVAILABLE ARE:");
 					
 					if (selectObj.selectModel(brandname)) {
@@ -53,6 +48,8 @@ public class Main {
 						
 						selectObj.getDetails(modelname);
 						valid = true;
+						
+						
 					} else {
 						System.out.println("invalid modelname");
 					}
@@ -60,26 +57,22 @@ public class Main {
 				} else {
 					System.out.println("invalid brand");
 				}
-				// valid=true;
-				// }else{
-				//
-				// }
+				
 			} else {
 				System.out.println("invalid type");
-			}
-			System.out.print ("Enter the quantity: ");
-            int quantity = scanner.nextInt();
-            JSONObject item = selectObj.getItem();
-            purchase.addToCart(item,quantity);
-            System.out.println(purchase);
+			}	
+			System.out.println("Enter the quantity: ");
+	        int quan = scanner.nextInt();
+	        JSONObject ordereditem = selectObj.getItem();
+	        purchase.addToCart(ordereditem,quan);
 		}
-	     
-	    }
+		
+	   }
 		// s.selectType("Desktop");
 
 		// s.selectModel("HP");
 		// s.getDetails("HP model1");
-	}
+}
 
 	/*
 	 * JSONReader readObj = new JSONReader(); readObj.reader(); JSONWriter

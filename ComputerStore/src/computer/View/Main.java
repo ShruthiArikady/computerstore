@@ -33,7 +33,29 @@ public class Main
 			System.out.println("SELECT TYPE OF COMPUTER YOU WANT TO ORDER");
 			selectObj.printTypes();
 			String selection = scanner.nextLine();
+			
+//////////////////////////////////	desktop		
 			if (selection.toUpperCase().trim().equals("DESKTOP")) {
+				System.out.println("THE BRANDS AVAILABLE ARE:");
+				if (selectObj.selectBrand(selection)) {
+					System.out.println("Enter the brand name");
+					String brandname = scanner.nextLine();
+					System.out.println("THE MODELS AVAILABLE ARE:");
+					
+					if (selectObj.selectModel(brandname)) {
+						
+						System.out.println("Enter the model name");
+						String modelname = scanner.nextLine();
+						
+						
+						selectObj.getDetails(modelname);
+						valid = true;
+						
+					}}}
+			
+//////////////////////////////////laptop
+			
+			if (selection.toUpperCase().trim().equals("LAPTOP")) {
 				System.out.println("THE BRANDS AVAILABLE ARE:");
 				if (selectObj.selectBrand(selection)) {
 					System.out.println("Enter the brand name");
@@ -60,7 +82,9 @@ public class Main
 				
 			} else {
 				System.out.println("invalid type");
-			}	
+			}
+		
+//////////////////////////////////////////////////////			
 			System.out.println("Enter the quantity: ");
 	        int quan = scanner.nextInt();
 	        JSONObject ordereditem = selectObj.getItem();

@@ -65,11 +65,14 @@ public class SelectComputer {
 
 	
 	public void getDetails(String modelName) {
+		
+		
 		for (Object itemObject : items) {
 
 			JSONObject item = (JSONObject) itemObject;
 
 			if (item.get("name").toString().toUpperCase().trim().equals(modelName.toUpperCase().trim()))
+			{
 
 				System.out.println("The Selected Item Name is :"
 						+ item.get("name").toString());
@@ -80,6 +83,8 @@ public class SelectComputer {
 			System.out.println("No of pieces available:"
 					+ item.get("quantity"));
 					selecteditem=item;
+			}
+					
 		}
 
 	}

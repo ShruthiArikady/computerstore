@@ -26,7 +26,6 @@ public class Main {
 	public static void main(String[] args) {
 		Main obj=new Main();
 		obj.mainloop();
-
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -34,6 +33,7 @@ public class Main {
 		// TODO Auto-generated method stub
 				Item i = new Item();
 				// printWelcome();
+				@SuppressWarnings("resource")
 				Scanner scanner = new Scanner(System.in);
 				System.out.println("Welcome to Buyify!");
 				boolean valid = false;

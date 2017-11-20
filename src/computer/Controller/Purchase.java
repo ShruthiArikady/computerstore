@@ -29,14 +29,17 @@ public class Purchase {
 
 	}
 	
-	
+	public ArrayList<JSONObject> getCart(){
+		return c.getCart();
+		
+	}
 
 	@SuppressWarnings("rawtypes")
 	public void removeItem(String name) {
 
-		ArrayList<JSONObject> it = c.getCart();
+		//ArrayList<JSONObject> it = ;
 
-		Iterator item = it.iterator();
+		Iterator item = c.getCart().iterator();
 
 		boolean loop = true;
 		while (loop && item.hasNext()) {
@@ -47,6 +50,8 @@ public class Purchase {
 				loop = false;
 			}
 		}
+		
+		
 	}
 
 }

@@ -1,4 +1,6 @@
 [
-{"name": "Lenovo510S","cost": "619","description":"FullHDTouchscreen","brand": "LENOVO","type": "DESKTOP","quantity":"4"}
-{"name": "HP218","cost": "799","description":"FullHDTouchscreen","brand": "HP","type": "LAPTOP","quantity":"6"}
+{"name": "Lenovo510S","cost": "6199","description":"All-in-One Desktop(AMD A6-9210, 4GB, 1TB HDD, Windows 10)","brand": "LENOVO","type": "DESKTOP","quantity":"4"}
+{"name": "DELi365","cost": "5999","description":"Display, AMD A6-7310 APU, 6GB Dual Channel Memory, 1TB 5400 rpm Hard Drive,White ","brand": "DEL","type": "DESKTOP","quantity":"6"}
+{"name": "HP218","cost": "7999","description":"19.5 Inch All-in-One Premium Flagship Desktop Computer ","brand": "HP","type": "LAPTOP","quantity":"6"}
+{"name": "ACERAspire","cost": "9999","description":"Full HD Touch, Intel Core i5-7400T, 12GB DDR4, 1TB HDD, Windows 10 Home, AZ3-715-ACKi5 ","brand": "ACER","type": "LAPTOP","quantity":"6"}
 ]

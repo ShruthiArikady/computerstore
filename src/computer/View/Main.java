@@ -1,9 +1,9 @@
-//Main package
 package computer.View;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import computer.Controller.Purchase;
@@ -19,13 +19,16 @@ import computer.Model.Item;
 //import computer.Model.JSONReader;
 
 public class Main {
-
+	SelectComputer selectObj;
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
 		Main obj=new Main();
+		
 		obj.mainloop();
+
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -33,35 +36,60 @@ public class Main {
 		// TODO Auto-generated method stub
 				Item i = new Item();
 				// printWelcome();
-				@SuppressWarnings("resource")
+				selectObj = new SelectComputer();
 				Scanner scanner = new Scanner(System.in);
 				System.out.println("Welcome to Buyify!");
 				boolean valid = false;
-				SelectComputer selectObj = new SelectComputer();
+			
 				Purchase purchase = new Purchase();
 				while (true) {
 					System.out.println("ENTER COMPUTER TYPE OR PRESS X to EXIT ");
 					selectObj.printTypes();
 					String selection = scanner.nextLine();
 
-					// //////////////////////////////// desktop
+					/** desktop*/
 					if (selection.toUpperCase().trim().equals("DESKTOP")
 							|| selection.toUpperCase().trim().equals("LAPTOP")) {
 						System.out.println("THE BRANDS AVAILABLE ARE:");
-						if (selectObj.selectBrand(selection)) {
+						JSONArray brands = selectObj.selectBrand(selection);
+						if (brands.size()!=0) {
+							
+							// print brands
+							for (Object itemObject : brands) {
+
+								JSONObject item = (JSONObject) itemObject;
+								System.out.println(item.get("brand").toString());
+									 
+								
+							}
+												
 							System.out.println("Enter the brand name");
 							String brandname = scanner.nextLine();
 							System.out.println("THE MODELS AVAILABLE ARE:");
+							JSONArray branname = selectObj.selectModel(brandname);
+							if (branname.size()!=0) {
+								
+								//print brandnames
+								for (Object itemObject : branname) {
 
-							if (selectObj.selectModel(brandname)) {
+									JSONObject item = (JSONObject) itemObject;
+									System.out.println(item.get("name").toString());
+										
+								} 
 
+								
 								System.out.println("Enter the model name");
 								String modelname = scanner.nextLine();
 
-								selectObj.getDetails(modelname);
+								
+								getDetails(modelname,branname,selectObj);
+								
+								
 								valid = true;
 
 							}
+							
+							
 						}
 
 						System.out.println("Enter the quantity: ");
@@ -70,9 +98,10 @@ public class Main {
 
 						JSONObject ordereditem = selectObj.getItem();
 						ArrayList<JSONObject> it = null;
+						int quantity = 0;
 						try {
 
-							int quantity = 0;
+							
 							try {
 								quantity = Integer.parseInt(quan);
 							} catch (Exception e) {
@@ -81,25 +110,11 @@ public class Main {
 							}
 
 							 it = purchase.addToCart(ordereditem, quantity);
+							 cartInfo(it,quantity);
 
-							int totalPrice = 0;
+							
 
-							for (JSONObject itemObj : it) {
-
-								
-								itemObj.put("quantity", quantity);
-								
-								totalPrice = (int) Double.parseDouble((String) itemObj
-										.get("cost")) * (quantity);
-
-								System.out.println("The Cart Details:");
-
-								System.out.println("Item selected:"
-										+ itemObj.get("brand") + " "
-										+ itemObj.get("type"));
-
-								System.out.println("Total Cost:" + totalPrice);
-							}
+							
 
 						} catch (PriceException e) {
 							System.out.println(e.getMessage());
@@ -108,6 +123,7 @@ public class Main {
 						System.out.println("Please Enter One Option ");
 						System.out.println("B -> To Buy the Item and Generate Invoice ");
 						System.out.println("R -> To Remove Item from Cart");
+						System.out.println("A -> To add Item to Cart");
 						String options = scanner.nextLine();
 
 						if (options.toUpperCase().trim().equals("B")) {
@@ -118,7 +134,20 @@ public class Main {
 							System.out.println("Please Enter item name to remove ");
 							String removeItem = scanner.nextLine();
 							purchase.removeItem(removeItem);
-						} else {
+							
+							ArrayList<JSONObject> cartitems = purchase.getCart();
+							if(cartitems.size()!=0){
+							cartInfo( cartitems, quantity);
+							}
+							else {
+								System.out.println("No More Items in Cart");
+							}
+							
+						} else if (options.toUpperCase().trim().equals("A")){
+							    continue;
+								
+						}else{
+							
 							System.out.println("invalid option");
 						}
 
@@ -144,19 +173,63 @@ public class Main {
 
 			System.out.println("The Ordered item is:");
             System.out.println("----------------------------------------------");
-			System.out.println("brand name:"+ itemObj.get("brand"));
-			System.out.println("type of computer is:"+ itemObj.get("type"));
-			System.out.println("unit price is:"+ itemObj.get("cost"));
-			System.out.println("the quantity is:"+ itemObj.get("quantity"));
+			System.out.println("Brand name:"+ itemObj.get("brand"));
+			System.out.println("Type of computer is:"+ itemObj.get("type"));
+			System.out.println("Unit price is:"+ itemObj.get("cost"));
+			System.out.println("The quantity is:"+ itemObj.get("quantity"));
 			System.out.println("----------------------------------------------");
 			System.out.println("Total Cost:" + totalPrice);
-			System.out.println("----------------------------------------------");
+           System.out.println("----------------------------------------------");
 		}
 	}
-	// s.selectType("Desktop");
+	
+public void getDetails(String modelName, JSONArray items, SelectComputer selectObj) {
+		
+		
+		for (Object itemObject : items) {
 
-	// s.selectModel("HP");
-	// s.getDetails("HP model1");
+			JSONObject item = (JSONObject) itemObject;
+
+			if (item.get("name").toString().toUpperCase().trim().equals(modelName.toUpperCase().trim()))
+			{
+
+				System.out.println("The Selected Item Name is :"
+						+ item.get("name").toString());
+			System.out.println("The Selected Item Cost is :"
+					+ item.get("cost").toString());
+			System.out.println("The Selected Item Description is :"
+					+ item.get("description").toString());
+			System.out.println("No of pieces available:"
+					+ item.get("quantity"));
+			
+			selectObj.setItem(item);
+			}
+					
+		}
+
+	}
+
+public void cartInfo(ArrayList<JSONObject> it, int quantity)
+{
+	int totalPrice = 0;
+	for (JSONObject itemObj : it) {
+
+		
+		itemObj.put("quantity", quantity);
+		
+		totalPrice = (int) Double.parseDouble((String) itemObj
+				.get("cost")) * (quantity);
+
+		System.out.println("The Cart Details:");
+
+		System.out.println("Item selected:"
+				+ itemObj.get("brand") + " "
+				+ itemObj.get("type"));
+
+		System.out.println("Total Cost:" + totalPrice);
+	}
+}
+
 }
 
 /*

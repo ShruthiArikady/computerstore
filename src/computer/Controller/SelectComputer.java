@@ -35,58 +35,43 @@ public class SelectComputer {
 
 	}
 
-	public boolean selectBrand(String Type) {
-		boolean value = true;
+	public JSONArray selectBrand(String Type) {
+		//boolean value = true;
+		JSONArray itemsnew = new JSONArray();
 		for (Object itemObject : items) {
 
 			JSONObject item = (JSONObject) itemObject;
 			
 				if (item.get("type").equals(Type.toUpperCase().trim())) {
-					System.out.println(item.get("brand").toString());
+					itemsnew.add(item);
+					//System.out.println(item.get("brand").toString());
 				} 
 			
 		}
-		return value;
+		
+		return itemsnew;
 	}
 
-	public boolean selectModel(String Brand) {
-		boolean value = true;
+	public JSONArray selectModel(String Brand) {
+		JSONArray itemsnew = new JSONArray();
 		for (Object itemObject : items) {
 
 			JSONObject item = (JSONObject) itemObject;
 			
 				if (item.get("brand").toString().toUpperCase().trim().equals(Brand.toUpperCase().trim())) {
-					System.out.println(item.get("name").toString());
+					itemsnew.add(item);
+					//System.out.println(item.get("name").toString());
 				} 
 			
 		}
-		return value;
+		return itemsnew;
 	}
 
 	
-	public void getDetails(String modelName) {
-		
-		
-		for (Object itemObject : items) {
 
-			JSONObject item = (JSONObject) itemObject;
-
-			if (item.get("name").toString().toUpperCase().trim().equals(modelName.toUpperCase().trim()))
-			{
-
-				System.out.println("The Selected Item Name is :"
-						+ item.get("name").toString());
-			System.out.println("The Selected Item Cost is :"
-					+ item.get("cost").toString());
-			System.out.println("The Selected Item Description is :"
-					+ item.get("description").toString());
-			System.out.println("No of pieces available:"
-					+ item.get("quantity"));
-					selecteditem=item;
-			}
-					
-		}
-
+	public JSONObject setItem(JSONObject item) {
+	
+		return selecteditem = item;
 	}
 
 
@@ -94,5 +79,6 @@ public class SelectComputer {
 	
 		return selecteditem;
 	}
+	
 
 }
